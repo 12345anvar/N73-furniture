@@ -1,0 +1,4 @@
+1. paginations, class based views (List, Template, Form), linked filters
+2. Deploying
+3. Permissions
+4. Custom commands, custom template tags, custom context processors, custom middlewares

@@ -1,0 +1,90 @@
+{% load i18n %}
+{% load static %}
+
+<div class="sidebar-3 sidebar-collection col-lg-3 col-md-3 col-sm-4">
+
+    <!-- category -->
+    <div class="sidebar-block">
+        <div class="title-block">{% trans 'Categories' %}</div>
+        <div class="block-content">
+            {% for category in categories %}
+                <div class="cateTitle hasSubCategory open level1">
+                                                    <span class="arrow collapse-icons collapsed" data-toggle="collapse"
+                                                          data-target="#{{ category.id }}" aria-expanded="false"
+                                                          role="status">
+                                                        <i class="zmdi zmdi-minus"></i>
+                                                        <i class="zmdi zmdi-plus"></i>
+                                                    </span>
+                    <a class="cateItem"
+                       onclick="addUrlParameter('cat', {{ category.id }})">{{ category.title }}</a>
+                    <div class="subCategory collapse" id="{{ category.id }}"
+                         aria-expanded="true" role="status">
+                        {% for sub_cat in category.children.all %}
+                            <div class="cateTitle">
+                                <a onclick="addUrlParameter('cat', {{ category.id }})"
+                                   class="cateItem">{{ sub_cat.title }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- recent posts -->
+    <div class="sidebar-block">
+        <div class="title-block">{% trans 'Recent Posts' %}</div>
+        <div class="post-item-content">
+            {% for post in recent_posts %}
+                <div>
+                    <div class="late-item first-child">
+                        <a href="{% url 'blogs:detail' pk=post.id %}">
+                            <p class="content-title">{{ post.title }}</p>
+                        </a>
+                        <span>
+                                                            <i class="zmdi zmdi-comments"></i>13 {% trans 'comments' %}
+                                                        </span>
+                        <span>
+                                                            <i class="zmdi zmdi-calendar-note"></i>{{ post.created_at|date:"d F Y" }}
+                                                        </span>
+                        <p class="description">{{ post.short_description|truncatechars:30 }}
+                        </p>
+                        <p class="remove">
+                            <a href="{% url 'blogs:detail' pk=post.id %}">{% trans 'READ MORE' %}</a>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- product tag -->
+    <div class="sidebar-block product-tags">
+        <div class="title-block">
+            {% trans 'Blog Tags' %}
+        </div>
+        <div class="block-content">
+            <ul class="listSidebarBlog list-unstyled">
+                {% for tag in tags %}
+                    <li>
+                        <a onclick="addUrlParameter('tag', {{ tag.id }})"
+                           title="Show products matching tag Hot Trend">
+                            {{ tag.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- advertising -->
+    <div class="sidebar-block group-image-special">
+        <div class="effect">
+            <a href="#">
+                <img class="img-fluid" src="{% static 'img/blog/advertising.jpg' %}"
+                     alt="banner-2"
+                     title="banner-2">
+            </a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,516 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-11 13:52+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Uzbek <uz@li.org>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\blogs\apps.py:8
+msgid "blogs"
+msgstr "Bloglar"
+
+#: .\blogs\models.py:10 .\shared\models.py:22 .\users\models.py:43
+msgid "Full name"
+msgstr "To‘liq ism"
+
+#: .\blogs\models.py:14 .\blogs\models.py:95 .\products\models.py:297
+msgid "Image"
+msgstr "Rasm"
+
+#: .\blogs\models.py:18 .\templates\layout\header.html:123
+msgid "About"
+msgstr "Haqida"
+
+#: .\blogs\models.py:22
+msgid "Professions"
+msgstr "Kasblar"
+
+#: .\blogs\models.py:26 .\products\models.py:28 .\products\models.py:103
+#: .\products\models.py:235 .\users\models.py:55
+msgid "Is active"
+msgstr "Faol"
+
+#: .\blogs\models.py:34
+msgid "Author"
+msgstr "Muallif"
+
+#: .\blogs\models.py:35 .\blogs\models.py:119
+msgid "Authors"
+msgstr "Mualliflar"
+
+#: .\blogs\models.py:41 .\blogs\models.py:64 .\blogs\models.py:85
+msgid "Title"
+msgstr "Sarlavha"
+
+#: .\blogs\models.py:49 .\products\models.py:24
+msgid "Parent category"
+msgstr "Yuqori toifa"
+
+#: .\blogs\models.py:57
+msgid "Category"
+msgstr "Toifa"
+
+#: .\blogs\models.py:58 .\blogs\models.py:109 .\products\models.py:214
+msgid "Categories"
+msgstr "Toifalar"
+
+#: .\blogs\models.py:72
+msgid "Tag"
+msgstr "Teg"
+
+#: .\blogs\models.py:73 .\blogs\models.py:114 .\products\models.py:220
+msgid "Tags"
+msgstr "Teglar"
+
+#: .\blogs\models.py:77
+msgid "Published"
+msgstr "E’lon qilingan"
+
+#: .\blogs\models.py:78
+msgid "Draft"
+msgstr "Qoralama"
+
+#: .\blogs\models.py:79
+msgid "Deleted"
+msgstr "O‘chirilgan"
+
+#: .\blogs\models.py:89 .\products\models.py:140
+msgid "Short description"
+msgstr "Qisqa tavsif"
+
+#: .\blogs\models.py:98
+msgid "Long description"
+msgstr "Batafsil tavsif"
+
+#: .\blogs\models.py:104 .\products\admin.py:83 .\products\models.py:201
+msgid "Status"
+msgstr "Holat"
+
+#: .\blogs\models.py:127
+msgid "Blog"
+msgstr "Blog"
+
+#: .\blogs\models.py:128 .\templates\blogs\blogs-list.html:5
+#: .\templates\layout\header.html:117
+msgid "Blogs"
+msgstr "Bloglar"
+
+#: .\products\admin.py:71
+msgid "Basic Info"
+msgstr "Asosiy ma’lumotlar"
+
+#: .\products\admin.py:74
+msgid "Pricing (UZS)"
+msgstr "Narx (UZS)"
+
+#: .\products\admin.py:77
+msgid "Pricing (USD)"
+msgstr "Narx (USD)"
+
+#: .\products\admin.py:80
+msgid "Pricing (RUB)"
+msgstr "Narx (RUB)"
+
+#: .\products\admin.py:86
+msgid "Relations"
+msgstr "Bog‘lanishlar"
+
+#: .\products\admin.py:89
+msgid "Flags"
+msgstr "Belgilar"
+
+#: .\products\admin.py:94
+msgid "Total Stock"
+msgstr "Umumiy zaxira"
+
+#: .\products\apps.py:8
+msgid "products"
+msgstr "Mahsulotlar"
+
+#: .\products\models.py:11
+msgid "Icon"
+msgstr "Ikonka"
+
+#: .\products\models.py:12
+msgid "CSS icon class, e.g. 'fa fa-couch'"
+msgstr "CSS ikonka klassi, masalan: 'fa fa-couch'"
+
+#: .\products\models.py:16 .\products\models.py:43 .\products\models.py:58
+#: .\products\models.py:79 .\products\models.py:126
+msgid "Name"
+msgstr "Nomi"
+
+#: .\products\models.py:36
+#| msgid "Parent category"
+msgid "Product Category"
+msgstr "Mahsulot toifasi"
+
+#: .\products\models.py:37
+#| msgid "Categories"
+msgid "Product Categories"
+msgstr "Mahsulot toifalari"
+
+#: .\products\models.py:51
+#| msgid "Products"
+msgid "Product Tag"
+msgstr "Mahsulot tegi"
+
+#: .\products\models.py:52
+#| msgid "Products"
+msgid "Product Tags"
+msgstr "Mahsulot teglari"
+
+#: .\products\models.py:59
+msgid "e.g. Walnut Brown, Oak Natural"
+msgstr "Masalan: Yong‘oq jigarrang, Tabiiy eman"
+
+#: .\products\models.py:63
+msgid "HEX Code"
+msgstr "HEX kodi"
+
+#: .\products\models.py:64
+msgid "e.g. #8B4513"
+msgstr "Masalan: #8B4513"
+
+#: .\products\models.py:72
+#| msgid "Products"
+msgid "Product Color"
+msgstr "Mahsulot rangi"
+
+#: .\products\models.py:73
+#| msgid "Products"
+msgid "Product Colors"
+msgstr "Mahsulot ranglari"
+
+#: .\products\models.py:85
+msgid "Logo"
+msgstr "Logotip"
+
+#: .\products\models.py:89
+msgid "Country"
+msgstr "Davlat"
+
+#: .\products\models.py:91
+msgid "Country of origin"
+msgstr "Kelib chiqish davlati"
+
+#: .\products\models.py:95 .\products\models.py:135
+#| msgid "Long description"
+msgid "Description"
+msgstr "Tavsif"
+
+#: .\products\models.py:99
+msgid "Website"
+msgstr "Veb-sayt"
+
+#: .\products\models.py:111 .\products\models.py:209
+msgid "Manufacture"
+msgstr "Ishlab chiqaruvchi"
+
+#: .\products\models.py:112
+msgid "Manufactures"
+msgstr "Ishlab chiqaruvchilar"
+
+#: .\products\models.py:116
+msgid "Available"
+msgstr "Mavjud"
+
+#: .\products\models.py:117
+msgid "Out of Stock"
+msgstr "Omborda yo‘q"
+
+#: .\products\models.py:118
+msgid "Discontinued"
+msgstr "Ishlab chiqarish to‘xtatilgan"
+
+#: .\products\models.py:119
+msgid "Coming Soon"
+msgstr "Tez orada"
+
+#: .\products\models.py:131
+msgid "SKU"
+msgstr "SKU"
+
+#: .\products\models.py:132
+msgid "Stock Keeping Unit — unique product code"
+msgstr "Ombor hisob kodi — mahsulotning noyob kodi"
+
+#: .\products\models.py:144
+#| msgid "Image"
+msgid "Main Image"
+msgstr "Asosiy rasm"
+
+#: .\products\models.py:152
+msgid "Price (UZS)"
+msgstr "Narx (UZS)"
+
+#: .\products\models.py:153
+msgid "Price in Uzbek Sum"
+msgstr "O‘zbek so‘mida narx"
+
+#: .\products\models.py:159
+msgid "Price (USD)"
+msgstr "Narx (USD)"
+
+#: .\products\models.py:160
+msgid "Price in US Dollar"
+msgstr "AQSh dollarida narx"
+
+#: .\products\models.py:166
+msgid "Price (RUB)"
+msgstr "Narx (RUB)"
+
+#: .\products\models.py:167
+msgid "Price in Russian Ruble"
+msgstr "Rossiya rublida narx"
+
+#: .\products\models.py:177
+msgid "Discount Price (UZS)"
+msgstr "Chegirmali narx (UZS)"
+
+#: .\products\models.py:185
+msgid "Discount Price (USD)"
+msgstr "Chegirmali narx (USD)"
+
+#: .\products\models.py:193
+msgid "Discount Price (RUB)"
+msgstr "Chegirmali narx (RUB)"
+
+#: .\products\models.py:227
+msgid "Colors"
+msgstr "Ranglar"
+
+#: .\products\models.py:231
+msgid "Is featured"
+msgstr "Tavsiya etilgan"
+
+#: .\products\models.py:254 .\products\models.py:264 .\products\models.py:293
+#| msgid "Products"
+msgid "Product"
+msgstr "Mahsulot"
+
+#: .\products\models.py:255 .\templates\layout\header.html:120
+msgid "Products"
+msgstr "Mahsulotlar"
+
+#: .\products\models.py:270
+msgid "Color"
+msgstr "Rang"
+
+#: .\products\models.py:274
+msgid "Quantity"
+msgstr "Miqdori"
+
+#: .\products\models.py:275
+msgid "Stock quantity for this color"
+msgstr "Ushbu rang uchun ombordagi miqdor"
+
+#: .\products\models.py:283
+msgid "Product Color Quantity"
+msgstr "Mahsulot rang miqdori"
+
+#: .\products\models.py:284
+msgid "Product Color Quantities"
+msgstr "Mahsulot rang miqdorlari"
+
+#: .\products\models.py:301
+msgid "Is primary"
+msgstr "Asosiy"
+
+#: .\products\models.py:302
+msgid "Mark as primary gallery image"
+msgstr "Galereyada asosiy rasm sifatida belgilash"
+
+#: .\products\models.py:307
+msgid "Alt text"
+msgstr "Alt matni"
+
+#: .\products\models.py:311
+msgid "Order"
+msgstr "Tartib"
+
+#: .\products\models.py:319
+#| msgid "Products"
+msgid "Product Image"
+msgstr "Mahsulot rasmi"
+
+#: .\products\models.py:320
+#| msgid "Products"
+msgid "Product Images"
+msgstr "Mahsulot rasmlari"
+
+#: .\shared\apps.py:8
+msgid "shared"
+msgstr "Umumiy"
+
+#: .\shared\models.py:8
+msgid "Created at"
+msgstr "Yaratilgan sana"
+
+#: .\shared\models.py:12
+msgid "Updated at"
+msgstr "Yangilangan sana"
+
+#: .\shared\models.py:25 .\templates\shared\contact.html:48
+#: .\users\models.py:39
+msgid "Email"
+msgstr "Elektron pochta"
+
+#: .\shared\models.py:29 .\templates\shared\contact.html:128
+msgid "Subject"
+msgstr "Mavzu"
+
+#: .\shared\models.py:32 .\templates\shared\contact.html:134
+msgid "Message"
+msgstr "Xabar"
+
+#: .\shared\models.py:36
+msgid "Is read"
+msgstr "O‘qilgan"
+
+#: .\shared\models.py:44 .\templates\layout\header.html:126
+#: .\templates\shared\contact.html:5 .\templates\shared\contact.html:26
+msgid "Contact"
+msgstr "Aloqa"
+
+#: .\shared\models.py:45
+msgid "Contacts"
+msgstr "Aloqalar"
+
+#: .\shared\views.py:19
+msgid "Successfully sent to the admin, thanks for your attention."
+msgstr "Muvaffaqiyatli tarzda administratorga yuborildi. E’tiboringiz uchun rahmat."
+
+#: .\templates\layout\header.html:114 .\templates\shared\contact.html:21
+msgid "Home"
+msgstr "Asosiy"
+
+#: .\templates\shared\contact.html:36
+#| msgid "Contacts"
+msgid "Contact Us"
+msgstr "Biz bilan bog‘lanish"
+
+#: .\templates\shared\contact.html:63
+msgid "Address"
+msgstr "Manzil"
+
+#: .\templates\shared\contact.html:65
+msgid "Uzbekistan, Tashkent, Chilanzar 19"
+msgstr "O‘zbekiston, Toshkent, Chilonzor 19"
+
+#: .\templates\shared\contact.html:78
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\templates\shared\contact.html:95
+msgid ""
+"\n"
+"                                            This project is created by NT-"
+"Python-N73 students.\n"
+"                                            This is not commercial. You can "
+"send your information\n"
+"                                            by filling this form. Please be "
+"carefully to your words!\n"
+"                                        "
+msgstr ""
+"\n"
+"                                            Ushbu loyiha NT-Python-N73 "
+"talabalari tomonidan yaratilgan.\n"
+"                                            Bu tijorat loyihasi emas. "
+"Ushbu formani to‘ldirib\n"
+"                                            o‘z ma’lumotlaringizni "
+"yuborishingiz mumkin.\n"
+"                                            Iltimos, yozayotgan "
+"so‘zlaringizga e’tiborli bo‘ling!\n"
+"                                        "
+
+#: .\templates\shared\contact.html:118
+#| msgid "Full name"
+msgid "Your name"
+msgstr "Ismingiz"
+
+#: .\templates\shared\contact.html:122
+msgid "Your email"
+msgstr "Elektron pochtangiz"
+
+#: .\templates\shared\contact.html:143
+#| msgid "Message"
+msgid "Send message"
+msgstr "Xabar yuborish"
+
+#: .\templates\shared\home.html:569
+msgid "FREE DELIVERY FROM $ 250"
+msgstr "$250 dan boshlab bepul yetkazib berish"
+
+#: .\users\admin.py:39
+msgid "Personal information"
+msgstr "Shaxsiy ma’lumotlar"
+
+#: .\users\admin.py:42
+msgid "Permissions"
+msgstr "Ruxsatlar"
+
+#: .\users\admin.py:51
+msgid "Important dates"
+msgstr "Muhim sanalar"
+
+#: .\users\apps.py:8
+msgid "users"
+msgstr "Foydalanuvchilar"
+
+#: .\users\forms.py:30 .\users\forms.py:36
+msgid "User not found, please check your credentials"
+msgstr "Foydalanuvchi topilmadi, ma’lumotlarni tekshiring"
+
+#: .\users\models.py:12
+msgid "Email is required"
+msgstr "Elektron pochta majburiy"
+
+#: .\users\models.py:25
+msgid "Superuser must have is_staff=True"
+msgstr "Superfoydalanuvchi uchun is_staff=True bo‘lishi kerak"
+
+#: .\users\models.py:27
+msgid "Superuser must have is_superuser=True"
+msgstr "Superfoydalanuvchi uchun is_superuser=True bo‘lishi kerak"
+
+#: .\users\models.py:35
+msgid "Username"
+msgstr "Foydalanuvchi nomi"
+
+#: .\users\models.py:50
+msgid "Phone number"
+msgstr "Telefon raqami"
+
+#: .\users\models.py:59
+msgid "Is staff"
+msgstr "Xodim"
+
+#: .\users\models.py:72
+msgid "User"
+msgstr "Foydalanuvchi"
+
+#: .\users\models.py:73
+msgid "Users"
+msgstr "Foydalanuvchilar"
+
+#: .\users\views.py:43
+msgid "We sent a confirmation link to your email, please verify it"
+msgstr "Elektron pochtangizga tasdiqlash havolasi yuborildi, iltimos tasdiqlang"
+
+#: .\users\views.py:72
+msgid "Something went wrong, please try again later"
+msgstr "Xatolik yuz berdi, iltimos keyinroq qayta urinib ko‘ring"

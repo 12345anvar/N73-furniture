@@ -1,0 +1,39 @@
+.star-content {
+    display: flex;
+    gap: 4px;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+/* empty star */
+.star::before {
+    content: "☆";
+    font-size: 20px;
+    color: #ccc;
+}
+
+/* full star */
+.star.full::before {
+    content: "★";
+    color: gold;
+}
+
+/* half star */
+.star.half::before {
+    content: "☆";
+    color: #ccc;
+}
+
+.star.half::after {
+    content: "★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: gold;
+}

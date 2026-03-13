@@ -1,0 +1,191 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ blog.title }}{% endblock %}
+{% block class %}class="blog"{% endblock %}
+{% block id %}id="blog-detail"{% endblock %}
+
+
+{% block content %}
+    <div class="main-content">
+        <div id="wrapper-site">
+            <div id="content-wrapper">
+                <div id="main">
+                    <div class="page-home">
+
+                        <!-- breadcrumb -->
+                        <nav class="breadcrumb-bg">
+                            <div class="container no-index">
+                                <div class="breadcrumb">
+                                    <ol>
+                                        <li>
+                                            <a href="{% url 'shared:home' %}">
+                                                <span>{% trans 'Home' %}</span>
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="container">
+                            <div class="content">
+                                <div class="row">
+                                    {% include 'blogs/blog-filter.html' %}
+                                    <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
+                                        <h3>{{ blog.title }}</h3>
+                                        <div class="hover-after">
+                                            <img src="{{ blog.image.url }}" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="late-item">
+                                            <p>
+                                                {{ blog.long_description }}
+                                            </p>
+                                            <div class="border-detail">
+                                                <p class="post-info float-left">
+                                                    <span>{{ blog.created_at|timesince }} {% trans 'minutes ago' %}</span>
+                                                    <span>113 {% trans 'Comments' %}</span>
+                                                    {% for author in blog.authors.all %}
+                                                        <span>{{ author.full_name }},</span>
+                                                    {% endfor %}
+                                                </p>
+                                                <div class="btn-group">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-share"></i>
+                                                        <span>{% trans 'Share' %}</span>
+                                                    </a>
+                                                    <a href="#" class="email">
+                                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                        <span>{% trans 'SEND TO A FRIEND' %}</span>
+                                                    </a>
+                                                    <a href="#" class="print">
+                                                        <i class="zmdi zmdi-print"></i>
+                                                        <span>{% trans 'Print' %}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% for author in blog.authors.all %}
+                                            <div class="admin" style="margin-left: 100px">
+                                                <img src="{{ author.image.url }}" alt="img"
+                                                     class="float-left right">
+                                                <div class="info">
+                                                    <p>
+                                                        <a href="#">
+                                                        <span class="content-title">
+                                                            {{ author.full_name }}
+                                                        </span>
+                                                        </a>
+                                                        <span>{{ author.professions }}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        {% endfor %}
+                                        <div class="related">
+                                            <h2 class="title-block">{% trans 'Related News' %}</h2>
+                                            <div class="main-blogs">
+                                                <div class="row">
+                                                    {% for news in related_news %}
+                                                        <div class="col-md-4">
+                                                            <div class="hover-after">
+                                                                <a href="{% url 'blogs:detail' pk=news.id %}">
+                                                                    <img src="{{ news.image.url }}" alt="img"
+                                                                         class="img-fluid">
+                                                                </a>
+                                                            </div>
+                                                            <div class="late-item">
+                                                                <p class="content-title">
+                                                                    <a href="{% url 'blogs:detail' pk=news.id %}">{{ news.title }}</a>
+                                                                </p>
+                                                                <p class="description">
+                                                                    {{ news.short_description|truncatechars:50 }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reply late-item">
+                                            <h2>{% trans 'Comments' %}</h2>
+                                            <div class="blog-comment">
+                                                <div class="avatar">
+                                                    <img src="{% static 'img/blog/user1.jpg' %}" alt="img"
+                                                         class="float-left right">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <p class="user-title">
+                                                        <a href="#">JOHN DOE</a>
+                                                        <span class="time">{% trans 'Posted on' %} Mar 17, 2017 at 6:57am
+                                                        </span>
+                                                    </p>
+                                                    <p class="content-comment">Lorem ipsum dolor sit amet, consectetur
+                                                        adipisicing elit, do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                                        adminim
+                                                        veniam.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-comment" id="respond">
+                                            <h2 class="title-block">{% trans 'Submit comment' %}</h2>
+                                            <div id="commentInput">
+                                                <form action="#" method="post" id="commentform">
+                                                    <input type="hidden" name="comment_parent" id="comment_parent"
+                                                           value="0">
+                                                    <div class="row">
+                                                        <div class="form-group col col-md-12">
+                                                            <textarea tabindex="4"
+                                                                      class="inputContent form-control grey" rows="10"
+                                                                      name="comment"
+                                                                      placeholder="Your Message"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="submit">
+                                                        <input type="submit" name="addComment" id="submitComment"
+                                                               class="btn btn-default"
+                                                               value="{% trans 'Write your comment' %}">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        function addUrlParameter(name, value) {
+            let searchParams = new URLSearchParams(window.location.search)
+
+            let existing = searchParams.get(name)
+            let values = existing ? existing.split(',') : []
+
+            const index = values.indexOf(String(value))
+
+            if (index !== -1) {
+                // value exists → remove it
+                values.splice(index, 1)
+            } else {
+                // value does not exist → add it
+                values.push(String(value))
+            }
+
+            if (values.length === 0) {
+                searchParams.delete(name)
+            } else {
+                searchParams.set(name, values.join(','))
+            }
+
+            window.location.search = searchParams.toString()
+        }
+    </script>
+{% endblock %}

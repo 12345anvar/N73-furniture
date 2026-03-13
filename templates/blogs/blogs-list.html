@@ -1,0 +1,135 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Blogs' %}{% endblock %}
+
+{% block id %}id="blog-list-sidebar-left"{% endblock %}
+{% block class %}class="blog"{% endblock %}
+
+
+{% block content %}
+    <div class="main-content">
+        <div id="wrapper-site">
+            <div id="content-wrapper">
+                <div id="main">
+                    <div class="page-home">
+
+                        <!-- breadcrumb -->
+                        <nav class="breadcrumb-bg">
+                            <div class="container no-index">
+                                <div class="breadcrumb">
+                                    <ol>
+                                        <li>
+                                            <a href="{% url 'shared:home' %}">
+                                                <span>{% trans 'Home' %}</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'blogs:list' %}">
+                                                <span>{% trans 'Blogs' %}</span>
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="container">
+                            <div class="content">
+                                <div class="row">
+                                    {% include 'blogs/blog-filter.html' %}
+                                    <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
+                                        <h2>{% trans 'Recent Posts' %}</h2>
+                                        {% for blog in blogs %}
+                                            <div class="list-content row">
+                                                <div class="hover-after col-md-5 col-xs-12">
+                                                    <a href="{% url 'blogs:detail' pk=blog.id %}">
+                                                        <img src="{{ blog.image.url }}" alt="img">
+                                                    </a>
+                                                </div>
+                                                <div class="late-item col-md-7 col-xs-12">
+                                                    <p class="content-title">
+                                                        <a href="{% url 'blogs:detail' pk=blog.id %}">{{ blog.title }}</a>
+                                                    </p>
+                                                    <p class="post-info">
+                                                        <span>{{ blog.created_at|timesince }} {% trans 'minutes ago' %}</span>
+                                                        <span>113 Comments</span>
+                                                        {% for author in blog.authors.all %}
+                                                            <span>{{ author.full_name }},</span>
+                                                        {% endfor %}
+                                                    </p>
+                                                    <p class="description">{{ blog.short_description }}
+                                                    </p>
+                                                    <span class="view-more">
+                                                    <a href="{% url 'blogs:detail' pk=blog.id %}">{% trans 'view more' %}</a>
+                                                </span>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="page-list col">
+                                            <ul class="justify-content-center d-flex">
+                                                {% if page_obj.has_previous %}
+                                                    <li>
+                                                        <a rel="prev" href="?page={{ page_obj.previous_page_number }}"
+                                                           class="previous disabled js-search-link">
+                                                            {% trans 'Previous' %}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                                {% for page in page_obj.paginator.page_range %}
+                                                    <li class="current active">
+                                                        <a rel="nofollow" href="?page={{ page }}"
+                                                           class="disabled js-search-link">
+                                                            {{ page }}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                                {% if page_obj.has_next %}
+                                                    <li>
+                                                        <a rel="next"
+                                                           onclick="addUrlParameter('page', {{ page_obj.next_page_number }})"
+                                                           class="next disabled js-search-link">
+                                                            {% trans 'Next' %}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        function addUrlParameter(name, value) {
+            let searchParams = new URLSearchParams(window.location.search)
+
+            let existing = searchParams.get(name)
+            let values = existing ? existing.split(',') : []
+
+            const index = values.indexOf(String(value))
+
+            if (index !== -1) {
+                // value exists → remove it
+                values.splice(index, 1)
+            } else {
+                // value does not exist → add it
+                values.push(String(value))
+            }
+
+            if (values.length === 0) {
+                searchParams.delete(name)
+            } else {
+                searchParams.set(name, values.join(','))
+            }
+
+            window.location.search = searchParams.toString()
+        }
+    </script>
+{% endblock %}

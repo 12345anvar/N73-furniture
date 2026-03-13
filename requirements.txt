@@ -1,0 +1,8 @@
+asgiref==3.11.1
+Django==5.2.11
+django-modeltranslation==0.20.2
+phonenumberslite==9.0.25
+pillow==12.1.1
+python-decouple==3.8
+sqlparse==0.5.5
+typing_extensions==4.15.0
