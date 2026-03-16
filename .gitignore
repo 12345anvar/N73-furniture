@@ -163,3 +163,4 @@ cython_debug/
 static
 codes
 
+core/settings_local.py
