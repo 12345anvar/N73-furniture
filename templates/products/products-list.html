@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load my_tags %}
 {% load static %}
 
 {% block title %}Products{% endblock %}
@@ -374,12 +375,13 @@
                                                     <div class="d-flex sort-by-row justify-content-lg-end justify-content-md-end">
 
                                                         <div class="products-sort-order dropdown">
-                                                            <select class="select-title">
-                                                                <option value="">Sort by</option>
-                                                                <option value="">Name, A to Z</option>
-                                                                <option value="">Name, Z to A</option>
-                                                                <option value="">Price, low to high</option>
-                                                                <option value="">Price, high to low</option>
+                                                             <select onchange="addUrlParameter('ordering', this.value)"
+                                                                    name="ordering" class="select-title">
+                                                                <option selected value="">Sort by</option>
+                                                                <option value="name">Name, A to Z</option>
+                                                                <option value="-name">Name, Z to A</option>
+                                                                <option value="price_uzs">Price, low to high</option>
+                                                                <option value="-price_uzs">Price, high to low</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -393,7 +395,7 @@
                                                         <div class="item text-center col-md-4">
                                                             <div class="product-miniature js-product-miniature item-one first-item">
                                                                 <div class="thumbnail-container border">
-                                                                    <a href="product-detail.html">
+                                                                    <a href="{% url 'products:detail' pk=product.id %}">
                                                                         {% for image in product.images.all %}
                                                                             <img class="img-fluid {% if forloop.first %}image-cover{% else %}image-secondary{% endif %}"
                                                                                  src="{{ image.image.url }}"
@@ -436,15 +438,18 @@
                                                                               class="formAddToCart">
                                                                             <input type="hidden" name="id_product"
                                                                                    value="1">
-                                                                            <a class="add-to-cart" href="#"
+                                                                            <a class="add-to-cart"
+                                                                               href="{% url 'products:cart' pk=product.id %}?next={{ request.get_full_path|urlencode }}"
                                                                                data-button-action="add-to-cart">
-                                                                                <i class="fa fa-shopping-cart"
+                                                                                <i {% if product|in_cart:request %}style="color: red;"{% endif %}
+                                                                                   class="fa fa-shopping-cart"
                                                                                    aria-hidden="true"></i>
                                                                             </a>
                                                                         </form>
-                                                                        <a class="addToWishlist" href="#" data-rel="1"
-                                                                           onclick="">
-                                                                            <i class="fa fa-heart"
+                                                                        <a class="addToWishlist"
+                                                                           href="{% url 'products:add_or_remove_from_wishlist' pk=product.id %}?next={{ request.get_full_path|urlencode }}">
+                                                                            <i class="fa {% if product.id in request.session.wishlist %}fa-heart{% else %}fa-heart-o{% endif %}"
+                                                                               {% if product.id in request.session.wishlist %}style="color: red;"{% endif %}
                                                                                aria-hidden="true"></i>
                                                                         </a>
                                                                         <a href="{% url 'products:detail' pk=product.id %}"
@@ -530,9 +535,10 @@
                                                                                         cart
                                                                                     </a>
                                                                                 </form>
-                                                                                <a class="addToWishlist" href="#"
-                                                                                   data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart"
+                                                                                <a class="addToWishlist"
+                                                                                   href="{% url 'products:add_or_remove_from_wishlist' pk=product.id %}?next={{ request.get_full_path|urlencode }}">
+                                                                                    <i class="fa {% if product.id in request.session.wishlist %}fa-heart{% else %}fa-heart-o{% endif %}"
+                                                                                       {% if product.id in request.session.wishlist %}style="color: red;"{% endif %}
                                                                                        aria-hidden="true"></i>
                                                                                 </a>
                                                                                 <a href="{% url 'products:detail' pk=product.id %}"
@@ -608,4 +614,50 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        function addUrlParameter(name, value) {
+            let searchParams = new URLSearchParams(window.location.search)
+
+            if (name === 'ordering') {
+                const existing = searchParams.get('ordering')
+                const normalizedValue = String(value).replace(/^-/, '')
+                const normalizedExisting = existing ? existing.replace(/^-/, '') : null
+
+                if (normalizedExisting === normalizedValue && existing === String(value)) {
+                    // exact same value → remove it
+                    searchParams.delete('ordering')
+                } else {
+                    // different value or toggled sign → replace
+                    searchParams.set('ordering', String(value))
+                }
+            } else {
+                let existing = searchParams.get(name)
+                let values = existing ? existing.split(',') : []
+
+                const normalizedValue = String(value).replace(/^-/, '')
+                const index = values.findIndex(v => v.replace(/^-/, '') === normalizedValue)
+
+                if (index !== -1) {
+                    if (values[index] === String(value)) {
+                        values.splice(index, 1)
+                    } else {
+                        values[index] = String(value)
+                    }
+                } else {
+                    values.push(String(value))
+                }
+
+                if (values.length === 0) {
+                    searchParams.delete(name)
+                } else {
+                    searchParams.set(name, values.join(','))
+                }
+            }
+
+            window.location.search = searchParams.toString()
+        }
+    </script>
 {% endblock %}

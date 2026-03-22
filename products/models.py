@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -319,3 +319,40 @@ class ProductImage(BaseModel):
         verbose_name = _("Product Image")
         verbose_name_plural = _("Product Images")
         ordering = ['order']
+
+
+class ProductReview(BaseModel):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='reviews',
+        verbose_name=_("Product")
+    )
+    name = models.CharField(
+        max_length=255,
+        verbose_name=_("Name")
+    )
+    email = models.EmailField(
+        blank=True,
+        verbose_name=_("Email")
+    )
+    rating = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        verbose_name=_("Rating")
+    )
+    comment = models.TextField(
+        verbose_name=_("Comment")
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_("Is active")
+    )
+
+    def __str__(self):
+        return f"{self.product.name} - {self.name}"
+
+    class Meta:
+        db_table = "product_review"
+        verbose_name = _("Product Review")
+        verbose_name_plural = _("Product Reviews")
+        ordering = ['-created_at']
