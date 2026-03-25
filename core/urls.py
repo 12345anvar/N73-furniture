@@ -19,6 +19,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = []
 urlpatterns += i18n_patterns(
@@ -26,6 +27,11 @@ urlpatterns += i18n_patterns(
     path('blogs/', include('blogs.urls', namespace='blogs')),
     path('products/', include('products.urls', namespace='products')),
     path('users/', include('users.urls', namespace='users')),
+    path('cart.html', RedirectView.as_view(pattern_name='users:cart', permanent=False)),
+    path('wishlist.html', RedirectView.as_view(pattern_name='users:wishlist', permanent=False)),
+    path('checkout.html', RedirectView.as_view(pattern_name='users:checkout', permanent=False)),
+    path('users/cart/checkout.html', RedirectView.as_view(pattern_name='users:checkout', permanent=False)),
+    path('users/checkout/wishlist.html', RedirectView.as_view(pattern_name='users:wishlist', permanent=False)),
     path('', include('shared.urls', namespace='shared')),
 )
 

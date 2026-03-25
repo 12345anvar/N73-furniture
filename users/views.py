@@ -1,6 +1,8 @@
 import threading
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -94,8 +96,81 @@ class LoginView(FormView):
 
         return super().form_invalid(form)
 
-class AccountTemplateView(TemplateView):
+class AccountView(LoginRequiredMixin, TemplateView):
     template_name = 'users/account.html'
+    login_url = reverse_lazy('users:login')
 
-class ResetPasswordTemplateView(TemplateView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        field_candidates = [
+            ("My Name", lambda obj: obj.get_full_name() or getattr(obj, "username", "") or getattr(obj, "email", "")),
+            ("Username", "username"),
+            ("Email", "email"),
+            ("First Name", "first_name"),
+            ("Last Name", "last_name"),
+            ("Company", "company"),
+            ("Address", "address"),
+            ("City", "city"),
+            ("Postal/Zip Code", "zip_code"),
+            ("Postal/Zip Code", "postal_code"),
+            ("Phone", "phone"),
+            ("Phone", "phone_number"),
+            ("Country", "country"),
+        ]
+
+        details = []
+        added_labels = set()
+
+        for label, source in field_candidates:
+            if callable(source):
+                value = source(user)
+            else:
+                if not hasattr(user, source):
+                    continue
+                value = getattr(user, source)
+
+            if value in ("", None):
+                continue
+            if label in added_labels:
+                continue
+
+            details.append({
+                "label": label,
+                "value": value,
+            })
+            added_labels.add(label)
+
+        if not details:
+            details.append({
+                "label": "Username",
+                "value": getattr(user, "username", "-") or "-",
+            })
+
+        context["account_details"] = details
+        return context
+
+class UserPasswordResetView(FormView):
     template_name = 'users/reset-password.html'
+    form_class = PasswordResetForm
+    success_url = reverse_lazy('users:reset-password')
+
+    def form_valid(self, form):
+        messages.success(self.request, _("If this email exists, a reset link was sent successfully"))
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, _("Please enter a valid email address"))
+        return super().form_invalid(form)
+
+class CheckoutTemplateView(TemplateView):
+    template_name = 'products/checkout.html'
+
+
+class WishlistView(LoginRequiredMixin, TemplateView):
+    template_name = 'products/wishlist.html'
+    login_url = reverse_lazy('users:login')
+
+
+class CartView(TemplateView):
+    template_name = 'products/cart.html'
